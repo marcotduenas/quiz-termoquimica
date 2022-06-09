@@ -4,12 +4,23 @@
 #Descrição			:	Esse quiz foi feito para ser aplicado na feria de ciências do Senac Sorocaba.
 #Autor					:	Marco Tulio Dueñas
 #######################################
-dialog --title "Seja bem-vindo ao nosso quiz!"\
-			 --msgbox "Este quiz busca visar o seu conhecimento em termoquimica de uma maneira divertida!" 0 0
-#Questão 1
-resposta1=$(dialog --menu "Qual a definição correta de termoquímica" 0 0 0\
-				1 'A Termoquímica estuda o calor da reação provocada pela troca de energia do meio externo com os reagentes.'\
-				2 'A Termoquímica estuda o termos técnicos utilizados no ramo da química e seus derivados' --stdout)
-test $resposta1 = "1"\
-	&& echo "Muito bem, você acertou!" \
- 	|| echo "Sinto muito, você errou"	
+while :
+  do 
+    dialog --title "Seja bem-vindo ao nosso quiz!"\
+      --msgbox "Este quiz busca visar o seu conhecimento em termoquimica de uma maneira divertida!" 0 0
+  #Questão 1
+    resposta1=$(dialog --menu "Qual a definição correta de termoquímica" 0 0 0\
+      1 'A Termoquímica estuda o calor da reação provocada pela troca de energia do meio externo com os reagentes.'\
+      2 'A Termoquímica estuda o termos técnicos utilizados no ramo da química e seus derivados.' --stdout)
+    test $resposta1 = "1"\
+      && dialog --title "Parabéns, você acertou!" --msgbox "Você acertou e ganhou 1 ponto!" 0 0 \
+      || dialog --title "Sinto muito, você errou!" --msgbox "Você errou e não ganhou pontos!" 0 0 
+   resposta2=$(dialog --menu "Qual a diferença entre reações exotérmicas e endotérmicas?" 0 0 0\
+      1 'Reações exotérmicas absorvem calor, e reações endotérmicas liberam calor.'\
+      2 'Não existe diferença.' \
+      3	'Reações exotérmicas liberam calor, e reações endotérmicas absorvem calor.'  --stdout)
+    test $resposta2 = "3"\
+      && dialog --title "Parabéns, você acertou!" --msgbox "Você acertou e ganhou 1 ponto!" 0 0 \
+      || dialog --title "Sinto muito, você errou!" --msgbox "Você errou e não ganhou pontos!" 0 0 
+
+  done    
